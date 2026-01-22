@@ -33,12 +33,20 @@ test\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c.h
 test\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c_ex.h
 test\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h
 test\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h
+<<<<<<< HEAD
 test\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h
 test\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h
 test\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 test\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
 test\main.o: ../Core/Inc/fdcan.h
 test\main.o: ../Core/Inc/tim.h
+=======
+test\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
+test\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
+test\main.o: ../Core/Inc/dma.h
+test\main.o: ../Core/Inc/fdcan.h
+test\main.o: ../Core/Inc/memorymap.h
+>>>>>>> develop
 test\main.o: ../Core/Inc/usart.h
 test\main.o: ../Core/Inc/gpio.h
 test\main.o: ../Core/Inc/mycan.h

@@ -35,6 +35,7 @@ typedef struct
 extern FDCAN_TxHeaderTypeDef drive1_tx;
 extern FDCAN_TxHeaderTypeDef drive2_tx;
 extern FDCAN_TxHeaderTypeDef drive3_tx;
+extern FDCAN_TxHeaderTypeDef drive4_tx;
 
 
 void CAN_Init(void);

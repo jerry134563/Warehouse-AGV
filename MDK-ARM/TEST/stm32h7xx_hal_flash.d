@@ -32,7 +32,10 @@ test\stm32h7xx_hal_flash.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2
 test\stm32h7xx_hal_flash.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c_ex.h
 test\stm32h7xx_hal_flash.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h
 test\stm32h7xx_hal_flash.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h
+<<<<<<< HEAD
 test\stm32h7xx_hal_flash.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h
 test\stm32h7xx_hal_flash.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h
+=======
+>>>>>>> develop
 test\stm32h7xx_hal_flash.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 test\stm32h7xx_hal_flash.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h

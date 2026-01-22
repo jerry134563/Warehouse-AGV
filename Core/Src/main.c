@@ -19,8 +19,13 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "fdcan.h"
+<<<<<<< HEAD
 #include "tim.h"
+=======
+#include "memorymap.h"
+>>>>>>> develop
 #include "usart.h"
 #include "gpio.h"
 
@@ -40,14 +45,21 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-int16_t aaa=500;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+<<<<<<< HEAD
 int32_t speed =10;
 void Set_Angle(float degree);
+=======
+int32_t speed_x =0;
+int32_t speed_y =0;
+extern uint8_t ReceiveBuff[255]; //接收缓冲区
+extern int8_t x;
+extern int8_t y;
+>>>>>>> develop
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -85,21 +97,36 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
-  /* USER CODE END SysInit */
+  /* USER CODE END SysInit */ 
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_FDCAN1_Init();
+<<<<<<< HEAD
   MX_UART8_Init();
   MX_TIM2_Init();
+=======
+  MX_USART2_UART_Init();
+  MX_UART7_Init();
+>>>>>>> develop
   /* USER CODE BEGIN 2 */
+  
   CAN_Init();
-   //Step_Reset(drive2_tx);
+  HAL_UARTEx_ReceiveToIdle_DMA(&huart7, ReceiveBuff, 255);
+  
+
+  
    Step_Set_MaxSpeed(drive1_tx,80);//设置下步进电机速度为：60，方便手调
    Step_Set_MaxSpeed(drive2_tx,80);//设置下步进电机速度为：60，方便手调
+<<<<<<< HEAD
 	 
 		Set_Angle(0.0);
 		HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
+=======
+   Step_Set_MaxSpeed(drive3_tx,80);//设置下步进电机速度为：60，方便手调
+   Step_Set_MaxSpeed(drive4_tx,80);//设置下步进电机速度为：60，方便手调
+>>>>>>> develop
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,8 +134,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+      speed_x=x*15;
+	  speed_y=y*15;
     /* USER CODE BEGIN 3 */
+<<<<<<< HEAD
 		Set_Angle(0.0);
 		HAL_Delay(1000);
 		Set_Angle(90.0);
@@ -135,6 +164,15 @@ int main(void)
 //	  Step_RPM(drive2_tx,-3000);
 //	 
 //	  HAL_Delay(6000);  
+=======
+	 // Step_RPM(drive3_tx,speed_x+speed_y);
+	  Step_RPM(drive1_tx,speed_x+speed_y);
+	  HAL_Delay(10);
+	 // Step_RPM(drive4_tx,speed_x+speed_y);
+	 // Step_RPM(drive2_tx,speed_x-speed_y);
+	  
+	  
+>>>>>>> develop
   }
   /* USER CODE END 3 */
 }

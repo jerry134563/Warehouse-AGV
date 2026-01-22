@@ -19,6 +19,7 @@ StepMessages Messages = {
 FDCAN_TxHeaderTypeDef drive1_tx;
 FDCAN_TxHeaderTypeDef drive2_tx;
 FDCAN_TxHeaderTypeDef drive3_tx;
+FDCAN_TxHeaderTypeDef drive4_tx;
 FDCAN_FilterTypeDef can_fillter;
   void CAN_Init(void) //500k bit/s
 {
@@ -40,14 +41,23 @@ FDCAN_FilterTypeDef can_fillter;
     drive2_tx.FDFormat = FDCAN_CLASSIC_CAN;
     drive2_tx.TxEventFifoControl = FDCAN_NO_TX_EVENTS;	
 	
-//	drive3_tx.Identifier = 0x03; //第三台驱动器id
-//    drive3_tx.IdType = FDCAN_STANDARD_ID;
-//    drive3_tx.TxFrameType = FDCAN_DATA_FRAME;
-//    drive3_tx.DataLength = FDCAN_DLC_BYTES_8;
-//    drive3_tx.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
-//    drive3_tx.BitRateSwitch = FDCAN_BRS_OFF;
-//    drive3_tx.FDFormat = FDCAN_CLASSIC_CAN;
-//    drive3_tx.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
+	drive3_tx.Identifier = 0x03; //第三台驱动器id
+    drive3_tx.IdType = FDCAN_STANDARD_ID;
+    drive3_tx.TxFrameType = FDCAN_DATA_FRAME;
+    drive3_tx.DataLength = FDCAN_DLC_BYTES_8;
+    drive3_tx.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
+    drive3_tx.BitRateSwitch = FDCAN_BRS_OFF;
+    drive3_tx.FDFormat = FDCAN_CLASSIC_CAN;
+    drive3_tx.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
+	
+	drive4_tx.Identifier = 0x04; //第4台驱动器id
+    drive4_tx.IdType = FDCAN_STANDARD_ID;
+    drive4_tx.TxFrameType = FDCAN_DATA_FRAME;
+    drive4_tx.DataLength = FDCAN_DLC_BYTES_8;
+    drive4_tx.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
+    drive4_tx.BitRateSwitch = FDCAN_BRS_OFF;
+    drive4_tx.FDFormat = FDCAN_CLASSIC_CAN;
+    drive4_tx.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
     
     // 过滤器配置
     can_fillter.IdType = FDCAN_STANDARD_ID;
@@ -58,10 +68,10 @@ FDCAN_FilterTypeDef can_fillter;
     can_fillter.FilterID2 = 0x02;  // ID2范围结束
     HAL_FDCAN_ConfigFilter(&hfdcan1, &can_fillter);
 
-//    can_fillter.FilterIndex = 1;
-//    can_fillter.FilterID1 = 0x03;  // ID1范围起始
-//    can_fillter.FilterID2 = 0x04;  // ID2范围结束
-//    HAL_FDCAN_ConfigFilter(&hfdcan1, &can_fillter);
+    can_fillter.FilterIndex = 1;
+    can_fillter.FilterID1 = 0x03;  // ID1范围起始
+    can_fillter.FilterID2 = 0x04;  // ID2范围结束
+    HAL_FDCAN_ConfigFilter(&hfdcan1, &can_fillter);
 
     // 激活通知
     HAL_FDCAN_ActivateNotification(

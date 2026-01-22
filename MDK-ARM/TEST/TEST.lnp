@@ -3,8 +3,13 @@
 "test\mycan.o"
 "test\main.o"
 "test\gpio.o"
+"test\dma.o"
 "test\fdcan.o"
+<<<<<<< HEAD
 "test\tim.o"
+=======
+"test\memorymap.o"
+>>>>>>> develop
 "test\usart.o"
 "test\stm32h7xx_it.o"
 "test\stm32h7xx_hal_msp.o"
@@ -25,8 +30,11 @@
 "test\stm32h7xx_hal_i2c_ex.o"
 "test\stm32h7xx_hal_exti.o"
 "test\stm32h7xx_hal_fdcan.o"
+<<<<<<< HEAD
 "test\stm32h7xx_hal_tim.o"
 "test\stm32h7xx_hal_tim_ex.o"
+=======
+>>>>>>> develop
 "test\stm32h7xx_hal_uart.o"
 "test\stm32h7xx_hal_uart_ex.o"
 "test\system_stm32h7xx.o"

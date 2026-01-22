@@ -3,6 +3,7 @@
         {
             "name": "TEST",
             "includePath": [
+<<<<<<< HEAD
                 "e:\\for 26\\code\\Warehouse-AGV\\Core\\Inc",
                 "e:\\for 26\\code\\Warehouse-AGV\\Drivers\\STM32H7xx_HAL_Driver\\Inc",
                 "e:\\for 26\\code\\Warehouse-AGV\\Drivers\\STM32H7xx_HAL_Driver\\Inc\\Legacy",
@@ -11,10 +12,24 @@
                 "e:\\for 26\\code\\Warehouse-AGV\\MDK-ARM",
                 "e:\\for 26\\code\\Warehouse-AGV\\Core\\Src",
                 "e:\\for 26\\code\\Warehouse-AGV\\Drivers\\STM32H7xx_HAL_Driver\\Src"
+=======
+                "e:\\for 26\\codeofcar\\Warehouse-AGV\\Core\\Inc",
+                "e:\\for 26\\codeofcar\\Warehouse-AGV\\Drivers\\STM32H7xx_HAL_Driver\\Inc",
+                "e:\\for 26\\codeofcar\\Warehouse-AGV\\Drivers\\STM32H7xx_HAL_Driver\\Inc\\Legacy",
+                "e:\\for 26\\codeofcar\\Warehouse-AGV\\Drivers\\CMSIS\\Device\\ST\\STM32H7xx\\Include",
+                "e:\\for 26\\codeofcar\\Warehouse-AGV\\Drivers\\CMSIS\\Include",
+                "e:\\for 26\\codeofcar\\Warehouse-AGV\\MDK-ARM",
+                "e:\\for 26\\codeofcar\\Warehouse-AGV\\Core\\Src",
+                "e:\\for 26\\codeofcar\\Warehouse-AGV\\Drivers\\STM32H7xx_HAL_Driver\\Src"
+>>>>>>> develop
             ],
             "defines": [
                 "USE_HAL_DRIVER",
                 "STM32H750xx",
+<<<<<<< HEAD
+=======
+                "USE_PWR_LDO_SUPPLY",
+>>>>>>> develop
                 "__CC_ARM",
                 "__arm__",
                 "__align(x)=",

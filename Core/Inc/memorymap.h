@@ -1,27 +1,12 @@
-<<<<<<< HEAD
-=======
 /* USER CODE BEGIN Header */
->>>>>>> develop
 /**
   ******************************************************************************
-  * @file    usart.h
+  * @file    memorymap.h
   * @brief   This file contains all the function prototypes for
-  *          the usart.c file
+  *          the memorymap.c file
   ******************************************************************************
   * @attention
   *
-<<<<<<< HEAD
-  * <h2><center>&copy; Copyright (c) 2026 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
-  *
-  ******************************************************************************
-  */
-=======
   * Copyright (c) 2026 STMicroelectronics.
   * All rights reserved.
   *
@@ -32,10 +17,9 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
->>>>>>> develop
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __USART_H__
-#define __USART_H__
+#ifndef __MEMORYMAP_H__
+#define __MEMORYMAP_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -48,24 +32,9 @@ extern "C" {
 
 /* USER CODE END Includes */
 
-<<<<<<< HEAD
-extern UART_HandleTypeDef huart8;
-=======
-extern UART_HandleTypeDef huart7;
-
-extern UART_HandleTypeDef huart2;
->>>>>>> develop
-
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
-
-<<<<<<< HEAD
-void MX_UART8_Init(void);
-=======
-void MX_UART7_Init(void);
-void MX_USART2_UART_Init(void);
->>>>>>> develop
 
 /* USER CODE BEGIN Prototypes */
 
@@ -75,9 +44,5 @@ void MX_USART2_UART_Init(void);
 }
 #endif
 
-#endif /* __USART_H__ */
+#endif /* __MEMORYMAP_H__ */
 
-<<<<<<< HEAD
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-=======
->>>>>>> develop

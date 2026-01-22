@@ -19,7 +19,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "fdcan.h"
+#include "memorymap.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -38,13 +41,16 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-int16_t aaa=500;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-int32_t speed =10;
+int32_t speed_x =0;
+int32_t speed_y =0;
+extern uint8_t ReceiveBuff[255]; //接收缓冲区
+extern int8_t x;
+extern int8_t y;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -83,43 +89,40 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
-  /* USER CODE END SysInit */
+  /* USER CODE END SysInit */ 
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_FDCAN1_Init();
+  MX_USART2_UART_Init();
+  MX_UART7_Init();
   /* USER CODE BEGIN 2 */
+  
   CAN_Init();
-   //Step_Reset(drive2_tx);
+  HAL_UARTEx_ReceiveToIdle_DMA(&huart7, ReceiveBuff, 255);
+  
+
+  
    Step_Set_MaxSpeed(drive1_tx,80);//设置下步进电机速度为：60，方便手调
    Step_Set_MaxSpeed(drive2_tx,80);//设置下步进电机速度为：60，方便手调
-   
+   Step_Set_MaxSpeed(drive3_tx,80);//设置下步进电机速度为：60，方便手调
+   Step_Set_MaxSpeed(drive4_tx,80);//设置下步进电机速度为：60，方便手调
   /* USER CODE END 2 */
-  
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
-
+      speed_x=x*15;
+	  speed_y=y*15;
     /* USER CODE BEGIN 3 */
-	 
-
-	 Step_RPM(drive1_tx,500);
-	    HAL_Delay(6000);
-	  Step_RPM(drive1_tx,2000);
-	   HAL_Delay(6000);
-	  Step_RPM(drive1_tx,3000);
-	  HAL_Delay(6000);
-	  Step_RPM(drive1_tx,-500);
-	    HAL_Delay(6000);
-	  Step_RPM(drive2_tx,-2000);
-	   HAL_Delay(6000);
-	  Step_RPM(drive2_tx,-3000);
-	 
-	  HAL_Delay(6000);
-	 // aaa+=500;
-	 
+	 // Step_RPM(drive3_tx,speed_x+speed_y);
+	  Step_RPM(drive1_tx,speed_x+speed_y);
+	  HAL_Delay(10);
+	 // Step_RPM(drive4_tx,speed_x+speed_y);
+	 // Step_RPM(drive2_tx,speed_x-speed_y);
 	  
 	  
   }

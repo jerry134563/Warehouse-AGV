@@ -58,6 +58,7 @@ void PendSV_Handler(void);
 void SysTick_Handler(void);
 void FDCAN1_IT0_IRQHandler(void);
 void FDCAN1_IT1_IRQHandler(void);
+void UART8_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
@@ -67,3 +68,5 @@ void FDCAN1_IT1_IRQHandler(void);
 #endif
 
 #endif /* __STM32H7xx_IT_H */
+
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

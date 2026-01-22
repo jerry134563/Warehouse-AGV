@@ -20,6 +20,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "fdcan.h"
+#include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -45,6 +47,7 @@ int16_t aaa=500;
 
 /* USER CODE BEGIN PV */
 int32_t speed =10;
+void Set_Angle(float degree);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -64,7 +67,6 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
-
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -88,14 +90,18 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_FDCAN1_Init();
+  MX_UART8_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   CAN_Init();
    //Step_Reset(drive2_tx);
    Step_Set_MaxSpeed(drive1_tx,80);//设置下步进电机速度为：60，方便手调
    Step_Set_MaxSpeed(drive2_tx,80);//设置下步进电机速度为：60，方便手调
-   
+	 
+		Set_Angle(0.0);
+		HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
   /* USER CODE END 2 */
-  
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -103,25 +109,32 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	 
+		Set_Angle(0.0);
+		HAL_Delay(1000);
+		Set_Angle(90.0);
+		HAL_Delay(1000);
+//	 	for(uint8_t i=0;i<10;i++){
+//			Set_Angle(i*30.0);
+//			HAL_Delay(1000);
+//		}
+//		for(uint8_t i=9;i>=0;i--){
+//			Set_Angle(i*30.0);
+//			HAL_Delay(1000); 
+//		}
 
-	 Step_RPM(drive1_tx,500);
-	    HAL_Delay(6000);
-	  Step_RPM(drive1_tx,2000);
-	   HAL_Delay(6000);
-	  Step_RPM(drive1_tx,3000);
-	  HAL_Delay(6000);
-	  Step_RPM(drive1_tx,-500);
-	    HAL_Delay(6000);
-	  Step_RPM(drive2_tx,-2000);
-	   HAL_Delay(6000);
-	  Step_RPM(drive2_tx,-3000);
-	 
-	  HAL_Delay(6000);
-	 // aaa+=500;
-	 
-	  
-	  
+//	 Step_RPM(drive1_tx,500);
+//	    HAL_Delay(6000);
+//	  Step_RPM(drive1_tx,2000);
+//	   HAL_Delay(6000);
+//	  Step_RPM(drive1_tx,3000);
+//	  HAL_Delay(6000);
+//	  Step_RPM(drive1_tx,-500);
+//	    HAL_Delay(6000);
+//	  Step_RPM(drive2_tx,-2000);
+//	   HAL_Delay(6000);
+//	  Step_RPM(drive2_tx,-3000);
+//	 
+//	  HAL_Delay(6000);  
   }
   /* USER CODE END 3 */
 }
@@ -138,13 +151,11 @@ void SystemClock_Config(void)
   /** Supply configuration update enable
   */
   HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY);
-
   /** Configure the main internal regulator output voltage
   */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE0);
 
   while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
-
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
@@ -164,7 +175,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-
   /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -185,7 +195,14 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void Set_Angle(float degree)/*舵机DS3218(270度版),舵机脉冲周期为20ms(50Hz),占空比2.5~12.5 对应 0~270度*/
+{
+	if(degree>270)degree=270;if(degree<0)degree=0;
+	uint8_t Period = 200;
+	uint8_t Compare = (degree/2700.0+0.025)*Period;
+	__HAL_TIM_SetCompare(&htim2,TIM_CHANNEL_1,Compare-1);
+	__HAL_TIM_SetCompare(&htim2,TIM_CHANNEL_2,Compare-1);
+}
 /* USER CODE END 4 */
 
 /**
@@ -219,3 +236,5 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
+
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
